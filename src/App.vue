@@ -2,7 +2,7 @@
     <div id="app">
         <div class="Todo">
             <div class="Todo-list">
-                <transition-group name="fade" tag="ul" @before-enter="beforeEnter">
+                <transition-group name="fade" tag="ul">
                     <TodoItem
                         v-for="(task, index) in getTasks"
                         :key="task.id"
@@ -52,10 +52,6 @@
         },
 
         methods: {
-            beforeEnter(e) {
-                console.log(e);
-            },
-
             addTask() {
                 // Task body
                 const defaultTask = {
@@ -163,7 +159,6 @@
         transform: translateY(75%);
         font-size: 0.75rem;
     }
-
 
 
     .fade-enter-active, .fade-leave-active {
