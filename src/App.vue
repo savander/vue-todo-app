@@ -13,7 +13,10 @@
                     />
                 </transition-group>
 
-                <span v-show="isTaskListEmpty">Currently, there are no tasks.</span>
+                <span v-show="isTaskListEmpty">
+                    Currently, there are no tasks to show.
+                    <strong>({{getCompletedTasksAmount}} tasks completed)</strong>
+                </span>
             </div>
 
             <form class="Todo-form" @submit.prevent="addTask">
@@ -121,6 +124,10 @@
                 return this.showCompletedTasks
                     ? this.taskList
                     : this.taskList.filter(task => !task.isCompleted);
+            },
+
+            getCompletedTasksAmount() {
+              return this.taskList.filter(task => task.isCompleted).length;
             },
 
             getTrimmedInput() {
