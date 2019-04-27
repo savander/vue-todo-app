@@ -14,17 +14,17 @@
             </div>
 
             <form class="Todo-form" @submit.prevent="addTask">
-                <label class="Todo-form-input" :class="{hasValue: task.trim()}">
-                    <input type="text" v-model="task">
+                <label class="Todo-form-input" :class="{hasValue: getTrimmedInput}">
+                    <input type="text" v-model="input">
                     <span>Task description...</span>
                 </label>
 
                 <Button type="submit">+</Button>
 
-                <Button @click.prevent="showCompleted = !showCompleted">
+                <Button @click.prevent="showCompletedTasks = !showCompletedTasks">
                     Show Completed
                     <font-awesome-icon
-                        :icon="showCompleted ? 'check-square' : 'square'"
+                        :icon="showCompletedTasks ? 'check-square' : 'square'"
                     />
                 </Button>
             </form>
@@ -46,41 +46,46 @@
         data() {
             return {
                 taskList: [],
-                task: '',
-                showCompleted: true
+                input: '',
+                showCompletedTasks: true
             }
         },
 
         methods: {
             addTask() {
-                // Task body
-                const defaultTask = {
-                    id: Math.round(Date.now() + Math.random()),
-                    createdAt: Date.now(),
-                    isCompleted: false,
-                    task: ''
-                };
-                const task = this.task.trim();
-
-                if (task.length < 3)
+                const input = this.getTrimmedInput;
+                if (input.length < 3)
                     return;
 
                 this.taskList.push({
-                    ...defaultTask,
-                    task
+                    id: Math.round(Date.now() + Math.random()),
+                    createdAt: Date.now(),
+                    isCompleted: false,
+                    task: input
                 });
-                this.task = '';
+
+                this.clearInput();
             },
 
-            toggleTaskCompletion(id) {
-                const item = this.taskList.find(item => item.id === id);
+            toggleTaskCompletion(taskId) {
+                const item = this.taskList.find(task => task.id === taskId);
                 item.isCompleted = !item.isCompleted;
             },
+
+            clearInput() {
+                this.input = "";
+            }
         },
 
         computed: {
             getTasks() {
-                return this.showCompleted ? this.taskList : this.taskList.filter(item => !item.isCompleted);
+                return this.showCompletedTasks
+                    ? this.taskList
+                    : this.taskList.filter(task => !task.isCompleted);
+            },
+
+            getTrimmedInput() {
+                return this.input.trim();
             }
         }
     }
