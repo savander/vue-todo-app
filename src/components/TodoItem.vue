@@ -71,7 +71,7 @@
         margin-bottom: 0.25rem;
     }
 
-    .Todo-item.even {
+    .Todo-item.isEven {
         color: midnightblue;
         background-color: lightsteelblue;
     }
@@ -81,7 +81,7 @@
         background-color: lightgray;
     }
 
-    .Todo-item.isCompleted.even {
+    .Todo-item.isCompleted.isEven {
         background-color: darkgray;
     }
 
