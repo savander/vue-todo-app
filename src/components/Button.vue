@@ -1,12 +1,22 @@
 <template>
-    <button class="btn" @click="$emit('click', $event)">
+    <button
+        class="btn"
+        :class="{danger}"
+        @click="$emit('click', $event)"
+    >
         <slot></slot>
     </button>
 </template>
 
 <script>
     export default {
-        name: "Button"
+        name: "Button",
+        props: {
+            danger: {
+                type: Boolean,
+                default: false
+            }
+        }
     }
 </script>
 
@@ -28,5 +38,15 @@
     .btn:hover {
         transform: scale(1.05);
         box-shadow: 0 5px 5px -3px darkslateblue;
+    }
+
+    .btn.danger {
+        color: white;
+        background-color: orangered;
+        box-shadow: 0 5px 5px -5px darkred;
+        border-color: darkred;
+    }
+    .btn.danger:hover {
+        box-shadow: 0 5px 5px -3px darkred;
     }
 </style>

@@ -2,10 +2,10 @@ import Vue from 'vue';
 import App from './App.vue';
 
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faCheckSquare, faSquare} from "@fortawesome/free-solid-svg-icons";
+import {faCheckSquare, faSquare, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
-library.add(faCheckSquare, faSquare);
+library.add(faCheckSquare, faSquare, faTrash);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

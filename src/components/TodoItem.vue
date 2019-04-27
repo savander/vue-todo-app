@@ -14,11 +14,17 @@
             </span>
         </div>
 
-        <Button @click="toggleTaskCompletion(task.id)">
-            <font-awesome-icon
-                :icon="isCompleted ? 'check-square' : 'square'"
-            />
-        </Button>
+        <div class="Todo-item-buttons">
+            <Button @click="toggleTaskCompletion(task.id)">
+                <font-awesome-icon
+                    :icon="isCompleted ? 'check-square' : 'square'"
+                />
+            </Button>
+
+            <Button @click="removeTask(task.id)" danger>
+                <font-awesome-icon icon="trash"/>
+            </Button>
+        </div>
     </li>
 </template>
 
@@ -43,8 +49,12 @@
         },
 
         methods: {
-            toggleTaskCompletion(id) {
-                this.$emit('toggleTask', id);
+            toggleTaskCompletion(taskId) {
+                this.$emit('toggleTask', taskId);
+            },
+
+            removeTask(taskId) {
+                this.$emit('removeTask', taskId);
             }
         },
 
@@ -98,5 +108,9 @@
 
     .Todo-item-date {
         font-size: 0.75rem;
+    }
+
+    .Todo-item-buttons > *:not(:last-child) {
+        margin-right: 0.5rem;
     }
 </style>

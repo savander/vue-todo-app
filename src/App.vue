@@ -9,6 +9,7 @@
                         :task="task"
                         :isEven="isEven(index)"
                         @toggleTask="toggleTaskCompletion"
+                        @removeTask="removeTask"
                     />
                 </transition-group>
             </div>
@@ -98,6 +99,10 @@
             toggleTaskCompletion(taskId) {
                 const item = this.taskList.find(task => task.id === taskId);
                 item.isCompleted = !item.isCompleted;
+            },
+
+            removeTask(taskId) {
+                this.taskList = this.taskList.filter(item => item.id !== taskId);
             },
 
             clearInput() {
