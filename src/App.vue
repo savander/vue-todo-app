@@ -12,6 +12,8 @@
                         @removeTask="removeTask"
                     />
                 </transition-group>
+
+                <span v-show="isTaskListEmpty">Currently, there are no tasks.</span>
             </div>
 
             <form class="Todo-form" @submit.prevent="addTask">
@@ -123,6 +125,10 @@
 
             getTrimmedInput() {
                 return this.input.trim();
+            },
+
+            isTaskListEmpty() {
+                return this.getTasks.length === 0;
             }
         }
     }
