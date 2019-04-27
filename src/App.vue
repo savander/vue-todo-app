@@ -51,6 +51,34 @@
             }
         },
 
+        mounted() {
+            if (localStorage.getItem('taskList')) {
+                try {
+                    this.taskList = JSON.parse(localStorage.getItem('taskList'));
+                } catch (e) {
+                    localStorage.removeItem('taskList');
+                }
+            }
+
+            if (localStorage.getItem('showCompletedTasks')) {
+                this.showCompletedTasks = localStorage.getItem('showCompletedTasks') === "true";
+            }
+        },
+
+        watch: {
+            taskList: {
+                handler(newTaskList) {
+                    const parsed = JSON.stringify(newTaskList);
+                    localStorage.setItem('taskList', parsed);
+                },
+                deep: true
+            },
+
+            showCompletedTasks(newValue) {
+                localStorage.setItem('showCompletedTasks', newValue);
+            }
+        },
+
         methods: {
             addTask() {
                 const input = this.getTrimmedInput;
