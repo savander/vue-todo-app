@@ -7,7 +7,7 @@
                         v-for="(task, index) in getTasks"
                         :key="task.id"
                         :task="task"
-                        :isEven="!!(index % 2)"
+                        :isEven="isEven(index)"
                         @toggleTask="toggleTaskCompletion"
                     />
                 </transition-group>
@@ -74,6 +74,10 @@
 
             clearInput() {
                 this.input = "";
+            },
+
+            isEven(num) {
+                return num % 2 === 0;
             }
         },
 
