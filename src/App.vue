@@ -22,7 +22,7 @@
             <form class="Todo-form" @submit.prevent="addTask">
                 <label class="Todo-form-input" :class="{hasValue: getTrimmedInput}">
                     <input type="text" v-model="input">
-                    <span>Task description...</span>
+                    <span>Enter new task...</span>
                 </label>
 
                 <Button type="submit">+</Button>
