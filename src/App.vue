@@ -1,6 +1,8 @@
 <template>
     <div id="app">
         <div class="Todo">
+            <strong>({{getCompletedTasksAmount}} tasks completed)</strong>
+
             <div class="Todo-list">
                 <transition-group name="fade" tag="ul">
                     <TodoItem
@@ -15,7 +17,6 @@
 
                 <span v-show="isTaskListEmpty">
                     Currently, there are no tasks to show.
-                    <strong>({{getCompletedTasksAmount}} tasks completed)</strong>
                 </span>
             </div>
 
