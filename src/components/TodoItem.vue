@@ -10,7 +10,7 @@
             {{task.task}}
 
             <span class="Todo-item-date">
-                {{(new Date(task.createdAt)).toUTCString()}}
+                {{getDateAsUTCString}}
             </span>
         </div>
 
@@ -61,6 +61,10 @@
         computed: {
             isCompleted() {
                 return this.task.isCompleted;
+            },
+
+            getDateAsUTCString() {
+                return (new Date(this.task.createdAt)).toUTCString();
             }
         }
     }
